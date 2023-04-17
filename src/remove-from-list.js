@@ -22,21 +22,27 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(l, k) {
-  let l = node;
-  let thisNode = node;
-  let prevNode = null;
-  if (thisNode.value === k) {
-    if (l === thisNode) {
-      l = thisNode.next;
-    } else {
-      prevNode.next = thisNode.next;
-      thisNode = thisNode.next;
+function removeKFromList(node, valueToRemove) {
+  let head = node;
+  let currentNode = node;
+  let previousNode = null;
 
+  while (currentNode) {
+    if (currentNode.value === valueToRemove) {
+      if (head === currentNode) {
+        head = currentNode.next;
+      } else {
+        previousNode.next = currentNode.next;
+        currentNode = currentNode.next;
+        continue;
+      }
     }
+
+    previousNode = currentNode;
+    currentNode = currentNode.next;
   }
-  prevNode = thisNode;
-  thisNode = thisNode.next;
+
+  return head;
 }
 
 module.exports = {
